@@ -130,13 +130,16 @@ async function load() {
         render();
     });
 });
-document.getElementById('limpiar-filtros').addEventListener('click', () => {
+function clearFilters() {
     search.value = '';
     championSelect.value = '';
     sort.value = 'campeon';
     state.page = 1;
     render();
     search.focus();
+}
+document.querySelectorAll('[data-limpiar-filtros]').forEach((button) => {
+    button.addEventListener('click', clearFilters);
 });
 retry.addEventListener('click', load);
 document.querySelector('.catalogo-controles').hidden = false;

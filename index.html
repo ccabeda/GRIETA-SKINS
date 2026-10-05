@@ -126,7 +126,10 @@
                             <option value="nombre">Nombre: A–Z</option>
                         </select>
                     </div>
-                    <p id="resultado-catalogo" role="status" aria-live="polite">Conectando con la colección…</p>
+                    <div class="catalogo-resumen">
+                        <p id="resultado-catalogo" role="status" aria-live="polite">Conectando con la colección…</p>
+                        <button type="button" class="boton-secundario" data-limpiar-filtros>Limpiar filtros</button>
+                    </div>
                 </div>
                 <div id="carga-catalogo">
                     <p id="estado-catalogo" role="status" aria-live="polite">Cargando colección de Riot Games…</p>
@@ -142,7 +145,7 @@
                     <span aria-hidden="true">◇</span>
                     <h3>No encontramos esa skin.</h3>
                     <p>Probá con otro nombre o volvé a ver la colección completa.</p>
-                    <button type="button" id="limpiar-filtros" class="boton-secundario">Mostrar todas las skins</button>
+                    <button type="button" class="boton-secundario" data-limpiar-filtros>Mostrar todas las skins</button>
                 </div>
                 <nav class="paginacion" aria-label="Páginas del catálogo" hidden>
                     <button type="button" id="pagina-anterior" aria-label="Página anterior">← Anterior</button>

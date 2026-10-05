@@ -108,8 +108,20 @@ textarea {
     border-color: var(--acento);
 }
 
-#resultado-catalogo {
+.catalogo-resumen {
     grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.catalogo-resumen button {
+    min-height: 44px;
+}
+
+#resultado-catalogo {
     font-size: 12px;
     color: var(--secundario);
     margin: 0;
