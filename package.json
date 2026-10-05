@@ -5,6 +5,8 @@
     "description": "Catálogo educativo de skins de League of Legends",
     "scripts": {
         "dev": "node server.cjs",
+        "build": "node scripts/build.js",
+        "preview": "node server.cjs --preview",
         "prices:update": "node scripts/update-prices.js",
         "lore:update": "node scripts/update-lore.js",
         "data:update": "node scripts/update-data.js",

@@ -4,7 +4,7 @@ const { spawnSync } = require('node:child_process');
 const root = path.resolve(__dirname, '..');
 function collect(directory) {
     return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-        if (entry.name.startsWith('.') || entry.name === 'node_modules') return [];
+        if (entry.name.startsWith('.') || ['node_modules', 'dist'].includes(entry.name)) return [];
         const file = path.join(directory, entry.name);
         return entry.isDirectory() ? collect(file) : [file];
     });
@@ -18,7 +18,7 @@ for (const file of allFiles.filter((file) => /\.(js|cjs|css|html)$/.test(file)))
         : file.endsWith('.css')
           ? [...source.matchAll(/url\(['"]?([^)'"\s]+)['"]?\)/g)].map((match) => match[1])
           : file.endsWith('.js')
-            ? [...source.matchAll(/import\s+(?:[^;]*?\s+from\s+)?['"](\.[^'"]+)['"]/g)].map((match) => match[1])
+            ? [...source.matchAll(/^\s*import\s+(?:[^;]*?\s+from\s+)?['"](\.[^'"]+)['"]/gm)].map((match) => match[1])
             : [];
     for (const reference of references.filter((value) => !/^(https?:|#|data:)/.test(value))) {
         if (!fs.existsSync(path.resolve(path.dirname(file), reference))) {

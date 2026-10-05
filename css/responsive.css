@@ -34,14 +34,6 @@
         gap: 14px;
     }
 
-    .catalogo-controles {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .buscador {
-        grid-column: 1 / -1;
-    }
-
     .producto {
         flex-basis: calc((100% - 24px) / 2);
     }

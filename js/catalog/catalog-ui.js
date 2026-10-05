@@ -7,7 +7,6 @@ import * as DataDragon from '../services/data-dragon.js';
 /* Coordina el estado del catálogo; no construye tarjetas ni consulta la API directamente. */
 const search = document.getElementById('buscar-skin');
 const championSelect = document.getElementById('campeon-skins');
-const sort = document.getElementById('orden-skins');
 const loadStatus = document.getElementById('estado-catalogo');
 const retry = document.getElementById('reintentar-catalogo');
 const loadingRegion = document.getElementById('carga-catalogo');
@@ -36,7 +35,6 @@ function render() {
     const page = state.index.select({
         query: search.value,
         champion: championSelect.value,
-        order: sort.value,
         page: state.page,
     });
     state.page = page.current;
@@ -124,7 +122,7 @@ async function load() {
     }
 }
 
-[search, championSelect, sort].forEach((control) => {
+[search, championSelect].forEach((control) => {
     control.addEventListener(control === search ? 'input' : 'change', () => {
         state.page = 1;
         render();
@@ -133,7 +131,6 @@ async function load() {
 function clearFilters() {
     search.value = '';
     championSelect.value = '';
-    sort.value = 'campeon';
     state.page = 1;
     render();
     search.focus();

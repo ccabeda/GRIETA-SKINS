@@ -2,7 +2,9 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
-const root = __dirname;
+const preview = process.argv.includes('--preview');
+const root = preview ? path.join(__dirname, 'dist') : __dirname;
+const port = preview ? 4174 : 4173;
 function publicFiles(directory) {
     return fs.readdirSync(path.join(root, directory), { withFileTypes: true }).flatMap((entry) => {
         const relative = `${directory}/${entry.name}`;
@@ -15,11 +17,11 @@ function publicFiles(directory) {
 }
 const files = [
     'index.html',
-    'styles.css',
+    ...(preview ? [] : ['styles.css']),
     'favicon.svg',
     'data/skin-prices.json',
     'data/skin-lore-es.json',
-    ...['css', 'js', 'img'].flatMap(publicFiles),
+    ...(preview ? ['assets', 'img'] : ['css', 'js', 'img']).flatMap(publicFiles),
 ];
 const routes = new Map(files.map((file) => [`/${file}`, file]));
 routes.set('/', 'index.html');
@@ -63,4 +65,4 @@ server.on('error', (error) => {
     console.error(`No se pudo iniciar el servidor: ${error.message}`);
     process.exitCode = 1;
 });
-server.listen(4173, '127.0.0.1', () => console.log('Grieta Skins: http://127.0.0.1:4173'));
+server.listen(port, '127.0.0.1', () => console.log(`Grieta Skins: http://127.0.0.1:${port}`));

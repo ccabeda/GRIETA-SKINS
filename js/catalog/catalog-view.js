@@ -51,8 +51,10 @@ function create({ openDetail, changePage }) {
     function render(page, loading) {
         renderCards(page.items);
         renderPagination(page);
+        const unit = page.total === 1 ? 'skin' : 'skins';
+        const loaded = loading ? (page.total === 1 ? ' cargada' : ' cargadas') : '';
         document.getElementById('resultado-catalogo').textContent = page.total
-            ? `Mostrando ${page.start + 1}–${page.start + page.items.length} de ${page.total} skins${loading ? ' cargadas' : ''}`
+            ? `Mostrando ${page.start + 1}–${page.start + page.items.length} de ${page.total} ${unit}${loaded}`
             : loading
               ? 'Buscando en los campeones que se están cargando…'
               : 'No hay skins para esta búsqueda.';

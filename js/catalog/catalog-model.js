@@ -14,16 +14,17 @@ function createCatalogIndex(input) {
         name: skin.name.trim(),
         search: normalize(`${skin.championName} ${skin.name}`),
     }));
-    const byName = [...skins].sort((a, b) => collator.compare(a.name, b.name));
-    const byChampion = [...byName].sort((a, b) => collator.compare(a.championName, b.championName));
+    const byChampion = [...skins].sort(
+        (a, b) => collator.compare(a.championName, b.championName) || collator.compare(a.name, b.name),
+    );
     let lastKey, lastMatches;
 
-    function select({ query = '', champion = '', order = 'campeon', page = 1, size = config.pageSize } = {}) {
+    function select({ query = '', champion = '', page = 1, size = config.pageSize } = {}) {
         const terms = normalize(query).split(/\s+/).filter(Boolean);
-        const key = JSON.stringify([terms, champion, order]);
+        const key = JSON.stringify([terms, champion]);
         if (key !== lastKey) {
             lastKey = key;
-            lastMatches = (order === 'nombre' ? byName : byChampion).filter(
+            lastMatches = byChampion.filter(
                 (skin) =>
                     (!champion || skin.champion === champion) && terms.every((term) => skin.search.includes(term)),
             );

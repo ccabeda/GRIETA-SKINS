@@ -47,6 +47,14 @@ Para actualizar ambas copias, ejecutar `npm run data:update`.
 | `npm run check`        | Verificar sintaxis, rutas y límites de líneas |
 | `npm run data:update`  | Actualizar precios e historias                |
 
+## Publicación
+
+GitHub Actions valida y publica automáticamente los cambios de `main` en GitHub Pages.
+`npm run build` genera el sitio en `dist/`, con JavaScript y CSS en una carpeta versionada
+por su contenido para evitar mezclar archivos de distintas publicaciones en la caché.
+`dist/` no se sube al repositorio; el flujo de publicación lo genera.
+Para revisar esa versión localmente, ejecutar `npm run preview` y abrir http://127.0.0.1:4174.
+
 ## Aclaraciones
 
 Proyecto educativo, sin afiliación con Riot Games.
