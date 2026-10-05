@@ -42,6 +42,8 @@ function fixture({ count = 14, failures = [], version = '16.19.1' } = {}) {
                             { num: 0, name: 'default' },
                             { num: 1, name: `${id} Cósmica` },
                             { num: 2, name: `${id} Cósmica (Rubí)` },
+                            { num: 4, name: `${id} de Cósmica (Perla)`, parentSkin: 1 },
+                            { num: 5, name: `${id} variante del aspecto original`, parentSkin: 0 },
                         ],
                     },
                 },
@@ -80,6 +82,7 @@ test('la caché evita volver a descargar detalles y sirve sin conexión', async 
     const { cacheKey } = config;
     const saved = JSON.parse(storage.getItem(cacheKey));
     assert.ok(saved.entries.C0.some((skin) => skin.name.includes('(Rubí)')));
+    assert.ok(saved.entries.C0.every((skin) => !['_4', '_5'].some((suffix) => skin.id.endsWith(suffix))));
     const main = saved.entries.C0[0];
     saved.entries.C0.push({
         ...main,

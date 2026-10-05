@@ -11,7 +11,7 @@ const config = Object.freeze({
     contactTimeoutMs: 15000,
     concurrency: 6,
     renderIntervalMs: 300,
-    cacheKey: 'grieta-ddragon-es_AR-v1',
+    cacheKey: 'grieta-ddragon-es_AR-v2',
     themeKey: 'grieta-theme',
     fallbackImage: 'img/skin-unavailable.svg',
     formspreeEndpoint: 'https://formspree.io/f/mjygbqoj',

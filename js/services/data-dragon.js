@@ -29,16 +29,20 @@ function snapshot(version, champions, entries, failed = [], offline = false) {
 
 function parseSkins(champion, data) {
     if (!Array.isArray(data?.skins)) throw new Error('Lista de skins inválida');
-    return data.skins
-        .filter((skin) => Number.isInteger(skin.num) && skin.num > 0 && typeof skin.name === 'string')
-        .map((skin) => ({
-            id: `${champion.id}_${skin.num}`,
-            champion: champion.id,
-            championName: champion.name,
-            name: skin.name.trim(),
-            description: `${champion.name}, ${champion.title}. Aspecto disponible en el catálogo de Data Dragon.`,
-            image: `${config.cdn}/cdn/img/champion/splash/${champion.id}_${skin.num}.jpg`,
-        }));
+    return (
+        data.skins
+            // parentSkin identifica variantes incluso cuando su traducción difiere de la skin base.
+            .filter((skin) => !Number.isInteger(skin.parentSkin))
+            .filter((skin) => Number.isInteger(skin.num) && skin.num > 0 && typeof skin.name === 'string')
+            .map((skin) => ({
+                id: `${champion.id}_${skin.num}`,
+                champion: champion.id,
+                championName: champion.name,
+                name: skin.name.trim(),
+                description: `${champion.name}, ${champion.title}. Aspecto disponible en el catálogo de Data Dragon.`,
+                image: `${config.cdn}/cdn/img/champion/splash/${champion.id}_${skin.num}.jpg`,
+            }))
+    );
 }
 
 async function loadCatalog({ fetcher = fetch, storage, onProgress = () => {} } = {}) {
