@@ -1,0 +1,183 @@
+/* 13. Adaptacion a tablet */
+@media (max-width: 900px) {
+    header {
+        flex-wrap: wrap;
+        padding: 20px 24px;
+        gap: 12px;
+    }
+
+    .navegacion-principal {
+        order: 3;
+        width: 100%;
+    }
+
+    .navegacion-principal ul {
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+    main {
+        padding: 0 24px;
+    }
+
+    #inicio {
+        padding: 40px 30px 150px;
+    }
+
+    .hero-ficha {
+        left: 30px;
+        right: auto;
+    }
+
+    .resenas-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .catalogo-controles {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .buscador {
+        grid-column: 1 / -1;
+    }
+
+    .producto {
+        flex-basis: calc((100% - 24px) / 2);
+    }
+
+    #contacto {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 30px;
+    }
+
+    .coleccion-intro {
+        gap: 12px 24px;
+    }
+}
+
+/* 14. Adaptacion a movil */
+@media (max-width: 540px) {
+    header {
+        padding: 16px;
+    }
+
+    main {
+        padding: 0 16px;
+    }
+
+    .marca {
+        font-size: 17px;
+    }
+
+    .marca-icono {
+        margin-right: 2px;
+    }
+
+    .navegacion-principal ul {
+        gap: 22px;
+    }
+
+    .navegacion-principal a {
+        font-size: 13px;
+    }
+
+    #inicio {
+        padding: 30px 22px 145px;
+    }
+
+    .hero-imagen {
+        object-position: 65% center;
+    }
+
+    h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero-ficha {
+        left: 22px;
+        right: 22px;
+        min-width: 0;
+    }
+
+    .etiqueta {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    section {
+        margin-bottom: 48px;
+    }
+
+    .productos-flex {
+        gap: 22px;
+    }
+
+    .producto {
+        flex-basis: 100%;
+    }
+
+    .coleccion-intro {
+        margin: -20px 0 48px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .catalogo-controles {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    #resultado-catalogo {
+        text-align: left;
+        margin: 0;
+    }
+
+    .form-fila {
+        grid-template-columns: 1fr;
+    }
+
+    .detalle-contenido {
+        padding: 22px;
+    }
+
+    .paginacion {
+        gap: 8px;
+    }
+
+    .paginacion > button {
+        flex: 1;
+    }
+
+    #numeros-pagina {
+        order: -1;
+        flex-basis: 100%;
+        justify-content: center;
+        margin-bottom: 6px;
+    }
+
+    #contacto {
+        padding: 24px;
+    }
+
+    #contacto h2 {
+        font-size: 27px;
+    }
+}
+
+/* 15. Movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .tema-boton,
+    .tema-boton::before {
+        transition: none;
+    }
+
+    .producto {
+        transition: none;
+    }
+}

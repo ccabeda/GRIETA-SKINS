@@ -1,0 +1,227 @@
+/* 06. Tarjetas del catalogo */
+.productos-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.producto {
+    flex: 0 1 calc((100% - 48px) / 3);
+    min-width: 0;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.producto:hover {
+    transform: translateY(-4px);
+    border-color: var(--acento);
+}
+
+.producto img {
+    width: 100%;
+    aspect-ratio: 1215 / 717;
+    object-fit: cover;
+}
+
+.imagen-nota {
+    margin: 0;
+    padding: 6px 14px;
+    font-size: 10px;
+    color: var(--secundario);
+    background: var(--fondo);
+}
+
+.producto-contenido {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.producto h3 {
+    margin: 0 0 12px;
+    font-size: 21px;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+}
+
+.producto .producto-universo {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--dorado);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    margin: 0 0 15px;
+}
+
+.producto-universo span {
+    color: var(--secundario);
+}
+
+.producto-descripcion {
+    color: var(--secundario);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.producto-pie {
+    margin-top: auto;
+    border-top: 1px solid var(--borde);
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.producto-pie p {
+    margin: 0;
+}
+
+.producto-pie strong {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 23px;
+    line-height: 1.2;
+}
+
+.producto-pie strong.precio-sin-rp {
+    font-size: 15px;
+}
+
+.precio-rp {
+    display: inline-block;
+    margin-left: 3px;
+    color: var(--dorado);
+    font-size: 12px;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.skin-lore-label {
+    display: block;
+    font-size: 10px;
+    color: var(--dorado);
+    margin-bottom: 6px;
+}
+
+.skin-lore-text {
+    display: block;
+}
+
+.producto-descripcion .skin-lore-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.producto-pie small {
+    display: block;
+    color: var(--secundario);
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+.ver-skin {
+    color: var(--acento);
+    background: transparent;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    padding: 11px 14px;
+    font-size: 12px;
+}
+
+.ver-skin span {
+    margin-left: 10px;
+}
+
+.ver-skin:hover {
+    border-color: var(--acento);
+}
+
+/* 07. Resenas */
+#resenas {
+    padding-top: 40px;
+    border-top: 1px solid var(--borde);
+}
+
+/* Reseñas: tres columnas con Grid en escritorio. */
+.resenas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+}
+
+.resenas-grid article {
+    padding: 25px;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    background: var(--superficie);
+}
+
+.resenas-grid h3 {
+    font-size: 15px;
+    margin-bottom: 14px;
+    color: var(--acento);
+}
+
+blockquote {
+    margin: 0;
+    color: var(--secundario);
+    font-size: 14px;
+}
+
+blockquote p {
+    margin: 0;
+}
+
+/* 08. Contacto y pie */
+#contacto {
+    padding: 44px;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    background: var(--superficie);
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+}
+
+#contacto p:last-child {
+    margin-bottom: 0;
+}
+
+footer {
+    border-top: 1px solid var(--borde);
+    text-align: center;
+    padding: 30px 24px;
+    color: var(--secundario);
+    font-size: 12px;
+}
+
+footer p {
+    margin-bottom: 7px;
+}
+
+footer a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--acento);
+}
+
+.footer-marca {
+    justify-content: center;
+    margin-bottom: 16px;
+    color: var(--texto);
+}

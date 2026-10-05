@@ -1,0 +1,144 @@
+/* 11. Detalles de resenas y formulario */
+.resena-avatar {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    background: var(--fondo);
+    color: var(--dorado);
+    border: 1px solid var(--borde);
+    border-radius: 50%;
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+.contacto-intro > p:not(.etiqueta) {
+    color: var(--secundario);
+    font-size: 14px;
+}
+
+.contacto-detalle {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border-top: 1px solid var(--borde);
+    margin-top: 28px;
+    padding-top: 24px;
+}
+
+.contacto-detalle > span {
+    color: var(--acento);
+    font-size: 24px;
+}
+
+.contacto-detalle strong {
+    font-size: 13px;
+}
+
+.contacto-detalle p {
+    font-size: 13px;
+    color: var(--secundario);
+    margin-top: 6px;
+}
+
+.contacto-intro .nota-privacidad {
+    font-size: 11px !important;
+    margin-top: 24px;
+}
+
+.form-fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.mensaje-ayuda,
+#estado-contacto {
+    color: var(--secundario);
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.campo-error {
+    color: #ffb4ab;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 7px 0 0;
+}
+
+[data-theme='light'] .campo-error {
+    color: #a32121;
+}
+
+#formulario-contacto [aria-invalid='true'] {
+    border-color: #e46b64;
+}
+
+[data-theme='light'] #formulario-contacto [aria-invalid='true'] {
+    border-color: #a32121;
+}
+
+/* 12. Dialogo de detalle */
+dialog {
+    width: min(860px, calc(100% - 32px));
+    max-height: calc(100dvh - 40px);
+    padding: 0;
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    background: var(--superficie);
+    color: var(--texto);
+    box-shadow: 0 30px 100px #0009;
+}
+
+dialog::backdrop {
+    background: #030913cc;
+    backdrop-filter: blur(6px);
+}
+
+dialog > img {
+    width: 100%;
+    height: auto;
+}
+
+.detalle-contenido {
+    padding: 28px 32px;
+}
+
+.detalle-contenido > p {
+    color: var(--secundario);
+    font-size: 14px;
+}
+
+.detalle-contenido .detalle-precio {
+    color: var(--dorado);
+    font-weight: 700;
+}
+
+.detalle-contenido .detalle-aviso {
+    font-size: 11px;
+    margin-bottom: 0;
+}
+
+.cerrar-detalle {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #ffffff60;
+    background: #090f19e8;
+    color: white;
+    border-radius: 50%;
+    font-size: 28px;
+    line-height: 1;
+}
+
+body.detalle-abierto {
+    overflow: hidden;
+}

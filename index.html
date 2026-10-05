@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Grieta Skins: catálogo educativo de skins de League of Legends con precios de referencia. Proyecto no oficial."
+        />
+        <title>Grieta Skins | Tu próximo look en la Grieta</title>
+        <meta name="theme-color" content="#090f19" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <script type="module" src="js/main.js"></script>
+    </head>
+    <body>
+        <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+        <!-- Encabezado y navegación interna de la página. -->
+        <header>
+            <a class="marca" href="#inicio">
+                <span class="marca-icono" aria-hidden="true">✦</span>
+                GRIETA
+                <span>SKINS</span>
+            </a>
+            <nav class="navegacion-principal" aria-label="Navegación principal">
+                <ul>
+                    <li>
+                        <a href="#inicio">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#productos">Productos</a>
+                    </li>
+                    <li>
+                        <a href="#resenas">Reseñas</a>
+                    </li>
+                    <li>
+                        <a href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+            <button
+                class="tema-boton"
+                id="tema-boton"
+                type="button"
+                aria-label="Cambiar a modo claro"
+                aria-pressed="true"
+                title="Cambiar a modo claro"
+                hidden
+            ></button>
+        </header>
+        <main id="contenido" tabindex="-1">
+            <section id="inicio" aria-labelledby="titulo-inicio">
+                <img id="hero-imagen" class="hero-imagen" alt="" hidden />
+                <div class="hero-contenido">
+                    <p class="etiqueta">EL MISMO CAMPEÓN. OTRA HISTORIA.</p>
+                    <h1 id="titulo-inicio">
+                        Tu próximo look
+                        <br />
+                        en la
+                        <span>Grieta.</span>
+                    </h1>
+                    <p>
+                        Explorá skins para tus campeones favoritos de League of Legends y elegí cómo entrar a la Grieta
+                        del Invocador.
+                    </p>
+                    <a class="boton-principal" href="#productos">
+                        Explorar skins
+                        <span aria-hidden="true">↗</span>
+                    </a>
+                    <p class="nota">Catálogo educativo · Precios de referencia · Sin ventas</p>
+                </div>
+                <button class="hero-ficha" id="hero-ficha" type="button" hidden>
+                    <span class="etiqueta">EN EL RADAR</span>
+                    <strong>
+                        <span id="hero-nombre"></span>
+                        <span aria-hidden="true">↗</span>
+                    </strong>
+                    <span id="hero-campeon"></span>
+                </button>
+            </section>
+            <div class="coleccion-intro" aria-label="Sobre la colección">
+                <span>
+                    <strong id="total-skins">…</strong>
+                    aspectos en la colección
+                </span>
+                <span>
+                    <span aria-hidden="true">✦</span>
+                    Ilustraciones oficiales de Riot Games
+                </span>
+                <span>
+                    <span aria-hidden="true">◇</span>
+                    Inspiración para tu próxima partida
+                </span>
+            </div>
+            <!-- Flexbox permite que las tarjetas pasen a otra fila cuando falta espacio. -->
+            <section id="productos" aria-labelledby="titulo-productos">
+                <p class="etiqueta">EL CATÁLOGO</p>
+                <h2 id="titulo-productos" tabindex="-1">Elegí tu próximo estilo.</h2>
+                <p>Explorá la colección de Riot y encontrá el estilo que va con vos.</p>
+                <div class="catalogo-controles" hidden>
+                    <div class="buscador">
+                        <label for="buscar-skin">Buscá tu próxima skin</label>
+                        <input
+                            type="search"
+                            id="buscar-skin"
+                            placeholder="Nombre de skin o campeón…"
+                            autocomplete="off"
+                        />
+                    </div>
+                    <div class="selector-campeon">
+                        <label for="campeon-skins">Campeón</label>
+                        <select id="campeon-skins">
+                            <option value="">Todos los campeones</option>
+                        </select>
+                    </div>
+                    <div class="ordenar">
+                        <label for="orden-skins">Ordenar por</label>
+                        <select id="orden-skins">
+                            <option value="campeon">Campeón: A–Z</option>
+                            <option value="nombre">Nombre: A–Z</option>
+                        </select>
+                    </div>
+                    <p id="resultado-catalogo" role="status" aria-live="polite">Conectando con la colección…</p>
+                </div>
+                <div id="carga-catalogo">
+                    <p id="estado-catalogo" role="status" aria-live="polite">Cargando colección de Riot Games…</p>
+                    <button id="reintentar-catalogo" class="boton-secundario" type="button" hidden>
+                        Reintentar carga
+                    </button>
+                </div>
+                <noscript>
+                    <p>Activá JavaScript para explorar todas las skins de Data Dragon.</p>
+                </noscript>
+                <div class="productos-flex"></div>
+                <div class="catalogo-vacio" hidden>
+                    <span aria-hidden="true">◇</span>
+                    <h3>No encontramos esa skin.</h3>
+                    <p>Probá con otro nombre o volvé a ver la colección completa.</p>
+                    <button type="button" id="limpiar-filtros" class="boton-secundario">Mostrar todas las skins</button>
+                </div>
+                <nav class="paginacion" aria-label="Páginas del catálogo" hidden>
+                    <button type="button" id="pagina-anterior" aria-label="Página anterior">← Anterior</button>
+                    <div id="numeros-pagina"></div>
+                    <button type="button" id="pagina-siguiente" aria-label="Página siguiente">Siguiente →</button>
+                </nav>
+                <p class="catalogo-aviso">
+                    Skins de Data Dragon, sin chromas. Precios de referencia de
+                    <a href="https://github.com/meraki-analytics/lolstaticdata">Meraki Analytics</a>: pueden estar
+                    desactualizados y no reflejan ofertas ni disponibilidad actual. Confirmá el precio en el cliente de
+                    LoL. No se realizan ventas.
+                </p>
+            </section>
+            <!-- CSS Grid organiza las reseñas en columnas. -->
+            <section id="resenas" aria-labelledby="titulo-resenas">
+                <p class="etiqueta">LA COMUNIDAD</p>
+                <h2 id="titulo-resenas">Desde la Grieta.</h2>
+                <p>Opiniones ficticias creadas para este proyecto educativo.</p>
+                <div class="resenas-grid">
+                    <article>
+                        <span class="resena-avatar" aria-hidden="true">LM</span>
+                        <h3>LunaMid</h3>
+                        <blockquote>
+                            <p>¡Me encanta descubrir nuevas temáticas para mi campeón favorito!</p>
+                        </blockquote>
+                    </article>
+                    <article>
+                        <span class="resena-avatar" aria-hidden="true">VS</span>
+                        <h3>VientoSur</h3>
+                        <blockquote>
+                            <p>El buscador me ayuda a encontrar mis aspectos favoritos.</p>
+                        </blockquote>
+                    </article>
+                    <article>
+                        <span class="resena-avatar" aria-hidden="true">LA</span>
+                        <h3>LuzArcana</h3>
+                        <blockquote>
+                            <p>Las ilustraciones son mi parte favorita de la colección.</p>
+                        </blockquote>
+                    </article>
+                </div>
+            </section>
+            <section id="contacto" aria-labelledby="titulo-contacto">
+                <div class="contacto-intro">
+                    <p class="etiqueta">CONECTEMOS</p>
+                    <h2 id="titulo-contacto">Tu próxima idea empieza acá.</h2>
+                    <p>
+                        ¿Qué campeón te gustaría ver en el catálogo? Compartí tu idea o contanos cuál es esa skin que
+                        siempre elegís.
+                    </p>
+                    <div class="contacto-detalle">
+                        <span aria-hidden="true">↗</span>
+                        <div>
+                            <strong>De la comunidad, para la comunidad.</strong>
+                            <p>Un espacio para hablar de estilos, universos y campeones.</p>
+                        </div>
+                    </div>
+                    <p class="nota-privacidad">No incluyas contraseñas ni datos de tu cuenta de Riot.</p>
+                </div>
+                <!-- Para activar el envío, configurar formspreeEndpoint en js/config.js. -->
+                <form id="formulario-contacto" method="post" aria-describedby="estado-contacto" novalidate>
+                    <div class="form-fila">
+                        <div>
+                            <label for="nombre">Tu nombre</label>
+                            <input
+                                id="nombre"
+                                name="name"
+                                autocomplete="name"
+                                aria-describedby="error-nombre"
+                                required
+                                placeholder="¿Cómo te llamás?"
+                            />
+                            <p class="campo-error" id="error-nombre" aria-live="polite" hidden></p>
+                        </div>
+                        <div>
+                            <label for="correo">Correo electrónico</label>
+                            <input
+                                id="correo"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                aria-describedby="error-correo"
+                                required
+                                placeholder="vos@ejemplo.com"
+                            />
+                            <p class="campo-error" id="error-correo" aria-live="polite" hidden></p>
+                        </div>
+                    </div>
+                    <label for="mensaje">Tu mensaje</label>
+                    <textarea
+                        id="mensaje"
+                        name="message"
+                        rows="5"
+                        aria-describedby="mensaje-ayuda error-mensaje"
+                        required
+                        placeholder="Me gustaría ver más skins de…"
+                    ></textarea>
+                    <p class="campo-error" id="error-mensaje" aria-live="polite" hidden></p>
+                    <p class="mensaje-ayuda" id="mensaje-ayuda">
+                        Entre 10 y 2000 caracteres. Todos los campos son obligatorios.
+                    </p>
+                    <button class="boton-principal" type="submit" disabled>
+                        Enviar mensaje
+                        <span aria-hidden="true">↗</span>
+                    </button>
+                    <p id="estado-contacto" role="status" aria-live="polite">
+                        El envío todavía no está habilitado. Pronto vas a poder escribirnos.
+                    </p>
+                    <noscript>
+                        <p>Activá JavaScript para utilizar el formulario de contacto.</p>
+                    </noscript>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <a class="marca footer-marca" href="#inicio">
+                <span class="marca-icono" aria-hidden="true">✦</span>
+                GRIETA
+                <span>SKINS</span>
+            </a>
+            <p>Tu campeón. Tu estilo. Tu Grieta.</p>
+            <p>Proyecto educativo de desarrollo Front-End · Precios de referencia y reseñas ficticias.</p>
+            <p>
+                Sitio no oficial, sin afiliación con Riot Games. League of Legends y sus personajes pertenecen a Riot
+                Games.
+            </p>
+            <a href="#inicio">Volver al inicio</a>
+        </footer>
+        <template id="tarjeta-skin">
+            <article class="producto">
+                <img alt="" width="1215" height="717" loading="lazy" decoding="async" />
+                <p class="imagen-nota" hidden></p>
+                <div class="producto-contenido">
+                    <p class="producto-universo"></p>
+                    <h3></h3>
+                    <p class="producto-descripcion"></p>
+                    <div class="producto-pie">
+                        <p>
+                            <strong data-skin-price>Consultando precio…</strong>
+                            <small data-price-note></small>
+                        </p>
+                        <button type="button" class="ver-skin">
+                            Ver skin
+                            <span aria-hidden="true">↗</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </template>
+        <dialog id="detalle-skin" aria-labelledby="detalle-titulo">
+            <button type="button" class="cerrar-detalle" aria-label="Cerrar detalle">×</button>
+            <img id="detalle-imagen" alt="" width="1215" height="717" />
+            <p id="detalle-imagen-nota" class="imagen-nota" hidden></p>
+            <div class="detalle-contenido">
+                <p class="etiqueta" id="detalle-universo"></p>
+                <h2 id="detalle-titulo"></h2>
+                <p id="detalle-descripcion"></p>
+                <p class="detalle-precio" id="detalle-precio"></p>
+                <p class="detalle-aviso" id="detalle-precio-nota"></p>
+                <p class="detalle-aviso">
+                    Precio de referencia: puede estar desactualizado. Confirmá precio y disponibilidad en el cliente de
+                    LoL. No se realizan compras desde este sitio.
+                </p>
+            </div>
+        </dialog>
+    </body>
+</html>
