@@ -9,6 +9,7 @@ Catálogo de skins de League of Legends desarrollado con HTML, CSS y JavaScript.
 - Catálogo actualizado desde Data Dragon, sin chromas.
 - Búsqueda por nombre, filtro por campeón y paginación de 6 skins.
 - Detalle de cada skin con ilustración, historia en español y precio de referencia.
+- Método de obtención de skins especiales en español, con fecha de la fuente y sin garantizar disponibilidad actual.
 - Skin destacada aleatoria en la portada.
 - Modo claro y oscuro con preferencia guardada.
 - Diseño adaptable a celulares y computadoras.
@@ -29,7 +30,7 @@ El sitio debe abrirse mediante el servidor, no directamente desde el HTML.
 ## Fuentes de datos
 
 - **Riot Data Dragon:** campeones, nombres de skins e ilustraciones.
-- **Meraki Analytics:** precios de referencia.
+- **Meraki Analytics:** precios de referencia y métodos de obtención registrados.
 - **CommunityDragon:** historias oficiales en español.
 - **Formspree:** recepción de mensajes del formulario.
 

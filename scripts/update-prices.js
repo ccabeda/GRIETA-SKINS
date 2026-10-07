@@ -10,7 +10,12 @@ for (const champion of Object.values(data)) {
     champions[champion.key] = {
         id: champion.id,
         key: champion.key,
-        skins: champion.skins.map(({ id, cost, isBase }) => ({ id, cost, isBase })),
+        skins: champion.skins.map(({ id, cost, isBase, distribution }) => ({
+            id,
+            cost,
+            isBase,
+            ...(typeof distribution === 'string' && distribution.trim() ? { distribution: distribution.trim() } : {}),
+        })),
     };
 }
 if (!Object.keys(champions).length) throw new Error('El proveedor devolvió un catálogo vacío');

@@ -3,6 +3,8 @@ import config from '../config.js';
 const unavailable = Object.freeze({ kind: 'unavailable' });
 const validPrice = (price) =>
     price &&
+    (price.distribution === undefined ||
+        (typeof price.distribution === 'string' && price.distribution.length <= 1000)) &&
     (price.kind === 'unavailable' ||
         price.kind === 'special' ||
         (price.kind === 'rp' && Number.isInteger(price.amount) && price.amount > 0));
@@ -16,7 +18,11 @@ export function normalizePrices(data, champion) {
         if (skin.isBase || !Number.isInteger(skin.id) || Math.floor(skin.id / 1000) !== data.id) continue;
         const id = `${champion}_${skin.id % 1000}`;
         if (Number.isInteger(skin.cost) && skin.cost > 0) prices[id] = { kind: 'rp', amount: skin.cost };
-        else if (skin.cost === 'Special') prices[id] = { kind: 'special' };
+        else if (skin.cost === 'Special') {
+            prices[id] = { kind: 'special' };
+            if (typeof skin.distribution === 'string' && skin.distribution.trim() && skin.distribution.length <= 1000)
+                prices[id].distribution = skin.distribution.trim();
+        }
     }
     return prices;
 }

@@ -3,7 +3,7 @@ const config = Object.freeze({
     pageSize: 6,
     pricesUrl: 'data/skin-prices.json',
     loreUrl: 'data/skin-lore-es.json',
-    pricesCacheKey: 'grieta-meraki-prices-v3',
+    pricesCacheKey: 'grieta-meraki-prices-v4',
     pricesCacheTtlMs: 86400000,
     locale: 'es_AR',
     cdn: 'https://ddragon.leagueoflegends.com',

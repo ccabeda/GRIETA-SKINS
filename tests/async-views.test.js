@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { showPrice } from '../js/catalog/skin-price-view.js';
 import { showLore } from '../js/catalog/skin-lore-view.js';
+import { showAcquisition } from '../js/catalog/skin-acquisition-view.js';
 
 // DOM mínimo para observar el resultado de las vistas sin red ni temporizadores.
 function element() {
@@ -31,6 +32,29 @@ function pending() {
         resolve: (id, result) => resolvers.get(id)(result),
     };
 }
+
+test('la obtención no se mezcla entre skins y sólo aparece en las especiales', async () => {
+    const text = element(),
+        source = pending();
+    const first = showAcquisition(text, { id: 'old' }, source.load);
+    const last = showAcquisition(text, { id: 'new' }, source.load);
+    source.resolve('new', { kind: 'rp', amount: 975 });
+    await last;
+    source.resolve('old', { kind: 'special', distribution: 'Facebook Distribution' });
+    await first;
+    assert.equal(text.hidden, true);
+    assert.equal(text.textContent, '');
+    await showAcquisition(text, {}, async () => ({
+        kind: 'special',
+        distribution: 'Facebook Distribution',
+        sourceDate: '2025-08-01',
+    }));
+    assert.equal(text.hidden, false);
+    assert.match(text.textContent, /Promoción de Facebook/);
+    assert.match(text.textContent, /1\/8\/25/);
+    await showAcquisition(text, {}, async () => ({ kind: 'special' }));
+    assert.match(text.textContent, /Sin información confirmada/);
+});
 
 test('un precio anterior que llega tarde no reemplaza al de la última skin abierta', async () => {
     const price = element(),

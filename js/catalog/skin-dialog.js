@@ -1,6 +1,7 @@
 import * as SkinImages from './skin-images.js';
 import { showPrice } from './skin-price-view.js';
 import { showLore } from './skin-lore-view.js';
+import { showAcquisition } from './skin-acquisition-view.js';
 function create({ onClose }) {
     const dialog = document.getElementById('detalle-skin');
     let openerId;
@@ -16,6 +17,7 @@ function create({ onClose }) {
         document.getElementById('detalle-universo').textContent = skin.championName;
         showLore(document.getElementById('detalle-descripcion'), skin);
         showPrice(document.getElementById('detalle-precio'), document.getElementById('detalle-precio-nota'), skin);
+        showAcquisition(document.getElementById('detalle-obtencion'), skin);
         dialog.showModal();
         document.body.classList.add('detalle-abierto');
     }

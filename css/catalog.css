@@ -225,3 +225,19 @@ footer a {
     margin-bottom: 16px;
     color: var(--texto);
 }
+.detalle-obtencion {
+    margin-block: 20px;
+    padding: 16px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: var(--fondo);
+}
+
+.detalle-obtencion > strong {
+    color: var(--acento);
+    font-size: 14px;
+}
+
+.detalle-obtencion > p {
+    margin-bottom: 0;
+}
