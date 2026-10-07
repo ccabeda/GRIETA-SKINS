@@ -299,19 +299,21 @@
         </template>
         <dialog id="detalle-skin" aria-labelledby="detalle-titulo">
             <button type="button" class="cerrar-detalle" aria-label="Cerrar detalle">×</button>
-            <img id="detalle-imagen" alt="" width="1215" height="717" />
-            <p id="detalle-imagen-nota" class="imagen-nota" hidden></p>
-            <div class="detalle-contenido">
-                <p class="etiqueta" id="detalle-universo"></p>
-                <h2 id="detalle-titulo"></h2>
-                <p id="detalle-descripcion"></p>
-                <p class="detalle-precio" id="detalle-precio"></p>
-                <p class="detalle-aviso" id="detalle-precio-nota"></p>
-                <div id="detalle-obtencion" class="detalle-obtencion" aria-live="polite" hidden></div>
-                <p class="detalle-aviso">
-                    Precio de referencia: puede estar desactualizado. Confirmá precio y disponibilidad en el cliente de
-                    LoL. No se realizan compras desde este sitio.
-                </p>
+            <div class="detalle-scroll">
+                <img id="detalle-imagen" alt="" width="1215" height="717" />
+                <p id="detalle-imagen-nota" class="imagen-nota" hidden></p>
+                <div class="detalle-contenido">
+                    <p class="etiqueta" id="detalle-universo"></p>
+                    <h2 id="detalle-titulo"></h2>
+                    <p id="detalle-descripcion"></p>
+                    <p class="detalle-precio" id="detalle-precio"></p>
+                    <p class="detalle-aviso" id="detalle-precio-nota"></p>
+                    <div id="detalle-obtencion" class="detalle-obtencion" aria-live="polite" hidden></div>
+                    <p class="detalle-aviso">
+                        Precio de referencia: puede estar desactualizado. Confirmá precio y disponibilidad en el cliente
+                        de LoL. No se realizan compras desde este sitio.
+                    </p>
+                </div>
             </div>
         </dialog>
     </body>

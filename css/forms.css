@@ -91,6 +91,7 @@ dialog {
     padding: 0;
     border: 1px solid var(--borde);
     border-radius: 16px;
+    overflow: hidden;
     background: var(--superficie);
     color: var(--texto);
     box-shadow: 0 30px 100px #0009;
@@ -101,7 +102,15 @@ dialog::backdrop {
     backdrop-filter: blur(6px);
 }
 
-dialog > img {
+.detalle-scroll {
+    max-height: calc(100dvh - 42px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--secundario) var(--superficie);
+}
+
+.detalle-scroll > img {
     width: 100%;
     height: auto;
 }
@@ -127,6 +136,7 @@ dialog > img {
 
 .cerrar-detalle {
     position: absolute;
+    z-index: 1;
     top: 14px;
     right: 14px;
     width: 44px;

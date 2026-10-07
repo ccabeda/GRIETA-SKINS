@@ -17,13 +17,13 @@ export async function showPrice(element, note, skin, loadPrice = getPrice) {
         note.textContent = 'Precio de referencia · Meraki';
     } else if (price.kind === 'special') {
         element.textContent = 'Obtención especial';
-        note.textContent = 'Sin precio directo en RP · Meraki';
+        note.textContent = 'Sin precio directo en RP';
     } else {
         element.textContent = 'Precio no disponible';
         note.textContent =
             'Nuestra fuente no tiene este precio. Puede faltar información de skins recientes; no significa que sea gratis.';
     }
-    if (price.kind !== 'unavailable') {
+    if (price.kind === 'rp') {
         const timestamp = Date.parse(price.sourceDate);
         const date = Number.isFinite(timestamp)
             ? new Intl.DateTimeFormat('es-AR', { dateStyle: 'short', timeZone: 'UTC' }).format(timestamp)
