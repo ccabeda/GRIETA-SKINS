@@ -19,6 +19,11 @@ export async function showAcquisition(element, skin, loadPrice = getPrice) {
         ? new Intl.DateTimeFormat('es-AR', { dateStyle: 'short', timeZone: 'UTC' }).format(timestamp)
         : 'no informada';
     note.textContent = `Fuente: Meraki · ${date}. Referencia histórica; no confirma disponibilidad, coste ni probabilidades actuales.`;
-    element.replaceChildren(title, description, note);
+    const source = element.ownerDocument.createElement('a');
+    source.href = 'https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US/champions.json';
+    source.target = '_blank';
+    source.rel = 'noopener noreferrer';
+    source.textContent = 'Consultar fuente: Meraki (datos en inglés, nueva pestaña) ↗';
+    element.replaceChildren(title, description, note, source);
     element.hidden = false;
 }

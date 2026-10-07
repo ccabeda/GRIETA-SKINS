@@ -4,9 +4,12 @@ import * as SkinDialog from './skin-dialog.js';
 import * as CatalogView from './catalog-view.js';
 import * as FeaturedSkin from './featured-skin.js';
 import * as DataDragon from '../services/data-dragon.js';
+import { getPrice } from '../services/skin-prices.js';
+import { acquisitionCategory } from '../services/skin-acquisition.js';
 /* Coordina el estado del catálogo; no construye tarjetas ni consulta la API directamente. */
 const search = document.getElementById('buscar-skin');
 const championSelect = document.getElementById('campeon-skins');
+const acquisitionSelect = document.getElementById('obtencion-skins');
 const loadStatus = document.getElementById('estado-catalogo');
 const retry = document.getElementById('reintentar-catalogo');
 const loadingRegion = document.getElementById('carga-catalogo');
@@ -35,6 +38,7 @@ function render() {
     const page = state.index.select({
         query: search.value,
         champion: championSelect.value,
+        acquisition: acquisitionSelect.value,
         page: state.page,
     });
     state.page = page.current;
@@ -95,6 +99,7 @@ function describeResult(snapshot) {
 async function load() {
     if (state.loading) return;
     state.loading = true;
+    acquisitionSelect.disabled = true;
     retry.hidden = true;
     loadStatus.textContent = 'Conectando con Data Dragon…';
     loadingRegion.setAttribute('aria-busy', 'true');
@@ -106,6 +111,16 @@ async function load() {
     }
     try {
         const snapshot = await DataDragon.loadCatalog({ storage, onProgress: receiveProgress });
+        clearTimeout(state.renderTimer);
+        state.renderTimer = null;
+        state.pendingSnapshot = null;
+        const skins = await Promise.all(
+            snapshot.skins.map(async (skin) => ({
+                ...skin,
+                acquisition: acquisitionCategory(await getPrice(skin)),
+            })),
+        );
+        snapshot.skins = skins;
         state.pendingSnapshot = snapshot;
         loadStatus.textContent = describeResult(snapshot);
         retry.hidden = !snapshot.offline && snapshot.failed.length === 0;
@@ -117,12 +132,13 @@ async function load() {
         state.renderTimer = null;
         applyPendingSnapshot({ final: true });
         state.loading = false;
+        acquisitionSelect.disabled = false;
         loadingRegion.removeAttribute('aria-busy');
         render();
     }
 }
 
-[search, championSelect].forEach((control) => {
+[search, championSelect, acquisitionSelect].forEach((control) => {
     control.addEventListener(control === search ? 'input' : 'change', () => {
         state.page = 1;
         render();
@@ -131,6 +147,7 @@ async function load() {
 function clearFilters() {
     search.value = '';
     championSelect.value = '';
+    acquisitionSelect.value = '';
     state.page = 1;
     render();
     search.focus();

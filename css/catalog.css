@@ -1,4 +1,12 @@
 /* 06. Tarjetas del catalogo */
+.detalle-obtencion a {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--acento);
+    font-size: 12px;
+    text-decoration: underline;
+}
+
 .productos-flex {
     display: flex;
     flex-wrap: wrap;

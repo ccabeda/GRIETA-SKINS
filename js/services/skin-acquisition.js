@@ -1,4 +1,14 @@
 // Traducciones de los métodos registrados por Meraki. No indican disponibilidad actual.
+export function acquisitionCategory(price) {
+    if (price.kind === 'rp') return 'rp';
+    if (price.kind !== 'special') return 'unknown';
+    const method = price.distribution || '';
+    if (/^\d+ Mythic Essence$/.test(method)) return 'mythic';
+    if (/Reward|Honor Capsule|Tournament Participation/i.test(method)) return 'reward';
+    if (/Facebook|Twitter|Youtube|Code Redemption|Collector|Retail Purchase/i.test(method)) return 'promotion';
+    return 'other';
+}
+
 const methods = new Map([
     [
         'Reward for finishing the ranked season in Gold or higher.',

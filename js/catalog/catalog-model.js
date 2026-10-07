@@ -19,14 +19,16 @@ function createCatalogIndex(input) {
     );
     let lastKey, lastMatches;
 
-    function select({ query = '', champion = '', page = 1, size = config.pageSize } = {}) {
+    function select({ query = '', champion = '', acquisition = '', page = 1, size = config.pageSize } = {}) {
         const terms = normalize(query).split(/\s+/).filter(Boolean);
-        const key = JSON.stringify([terms, champion]);
+        const key = JSON.stringify([terms, champion, acquisition]);
         if (key !== lastKey) {
             lastKey = key;
             lastMatches = byChampion.filter(
                 (skin) =>
-                    (!champion || skin.champion === champion) && terms.every((term) => skin.search.includes(term)),
+                    (!champion || skin.champion === champion) &&
+                    (!acquisition || skin.acquisition === acquisition) &&
+                    terms.every((term) => skin.search.includes(term)),
             );
         }
         const pageSize = Number.isInteger(size) && size > 0 ? size : config.pageSize;

@@ -1,7 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { describeAcquisition } from '../js/services/skin-acquisition.js';
+import { describeAcquisition, acquisitionCategory } from '../js/services/skin-acquisition.js';
 import { normalizePrices, createPriceService } from '../js/services/skin-prices.js';
+
+test('clasifica métodos sin confundir precios desconocidos con obtención especial', () => {
+    assert.equal(acquisitionCategory({ kind: 'rp', amount: 1350 }), 'rp');
+    assert.equal(acquisitionCategory({ kind: 'unavailable' }), 'unknown');
+    for (const [distribution, expected] of [
+        ['150 Mythic Essence', 'mythic'],
+        ['Reward for finishing the ranked season in Gold or higher.', 'reward'],
+        ['Honor Capsule', 'reward'],
+        ['Facebook Distribution', 'promotion'],
+        ['Code Redemption', 'promotion'],
+        ['Limited Purchase', 'other'],
+        ['New unknown method', 'other'],
+    ])
+        assert.equal(acquisitionCategory({ kind: 'special', distribution }), expected);
+});
 
 test('traduce métodos de obtención conservando requisitos y cantidades', () => {
     assert.match(describeAcquisition('150 Mythic Essence'), /150 esencias míticas/);

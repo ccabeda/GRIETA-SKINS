@@ -52,6 +52,11 @@ test('la obtención no se mezcla entre skins y sólo aparece en las especiales',
     assert.equal(text.hidden, false);
     assert.match(text.textContent, /Promoción de Facebook/);
     assert.match(text.textContent, /1\/8\/25/);
+    assert.equal(
+        text.children[3].href,
+        'https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US/champions.json',
+    );
+    assert.equal(text.children[3].rel, 'noopener noreferrer');
     await showAcquisition(text, {}, async () => ({ kind: 'special' }));
     assert.match(text.textContent, /Sin información confirmada/);
 });
@@ -83,6 +88,7 @@ test('una respuesta vieja no inventa precio cuando la última skin no tiene dato
     source.resolve('old', { kind: 'rp', amount: 1350 });
     await first;
     assert.equal(price.textContent, 'Precio no disponible');
+    assert.match(note.textContent, /no significa que sea gratis/);
 });
 
 test('una historia tardía no reemplaza la historia actual ni reaparece si la nueva no tiene texto', async () => {

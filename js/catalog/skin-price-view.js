@@ -20,7 +20,8 @@ export async function showPrice(element, note, skin, loadPrice = getPrice) {
         note.textContent = 'Sin precio directo en RP · Meraki';
     } else {
         element.textContent = 'Precio no disponible';
-        note.textContent = 'Sin un precio de referencia confirmado';
+        note.textContent =
+            'Nuestra fuente no tiene este precio. Puede faltar información de skins recientes; no significa que sea gratis.';
     }
     if (price.kind !== 'unavailable') {
         const timestamp = Date.parse(price.sourceDate);

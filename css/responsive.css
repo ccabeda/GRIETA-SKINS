@@ -1,5 +1,12 @@
 /* 13. Adaptacion a tablet */
 @media (max-width: 900px) {
+    .catalogo-controles {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .buscador {
+        grid-column: 1 / -1;
+    }
     header {
         flex-wrap: wrap;
         padding: 20px 24px;
