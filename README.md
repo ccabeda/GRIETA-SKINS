@@ -55,12 +55,3 @@ GitHub Actions valida y publica automáticamente los cambios de `main` en GitHub
 por su contenido para evitar mezclar archivos de distintas publicaciones en la caché.
 `dist/` no se sube al repositorio; el flujo de publicación lo genera.
 Para revisar esa versión localmente, ejecutar `npm run preview` y abrir http://127.0.0.1:4174.
-
-## Aclaraciones
-
-Proyecto educativo, sin afiliación con Riot Games.
-No realiza ventas ni procesa pagos. Las reseñas son ficticias.
-Los precios pueden estar desactualizados: confirmar su valor y disponibilidad
-en el cliente de League of Legends.
-
-League of Legends, sus personajes e ilustraciones pertenecen a Riot Games.
